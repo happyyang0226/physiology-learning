@@ -17,7 +17,7 @@
     if (XIDX) return XIDX; XIDX = [];
     chapters.forEach(function (c) {
       (c.lessons || []).forEach(function (l) {
-        var txt = [l.name, l.takeaway, l.review].concat(l.paragraphs || []).concat((l.rows || []).map(function (r) { return r.join(' '); })).concat(l.flow || []).map(plain).join(' ');
+        var txt = [l.name, l.takeaway, l.review].concat(l.paragraphs || []).concat((l.rows || []).map(function (r) { return r.join(' '); })).concat(l.flow || []).map(plain).join(' ').replace(/[₀-₉]/g, function (d) { return String('₀₁₂₃₄₅₆₇₈₉'.indexOf(d)); });
         XIDX.push({ ch: c.id, href: '#ph-ch-' + c.id, t: l.name, txt: txt });
       });
     });
